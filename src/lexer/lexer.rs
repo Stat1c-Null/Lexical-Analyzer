@@ -22,4 +22,8 @@ impl Lexer {
       //lexer.read_char();
       lexer
     }
+
+  pub fn next_token(&mut self) -> Vec<Token> {
+    return vec![];
+  }
 }

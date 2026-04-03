@@ -31,7 +31,12 @@ fn main() {
                                         sum = num1 + num2
                                         print('Sum: ',sum)";
         println!("Default code:\n{}", default_code);
-        let lexer = Lexer::new(default_code);
+        let mut lexer = Lexer::new(default_code);
+
+        let tokens = lexer.next_token();
+        for token in tokens {
+            println!("test");
+        }
 
     } else { //TODO: Implement the logic for analyzing the file
         println!("Enter path to the file:");

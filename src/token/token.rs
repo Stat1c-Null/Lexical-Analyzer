@@ -70,11 +70,46 @@ pub enum TokenType {
     YIELD,
     LAMBDA,
 }
-pub enum Token {
-    Identifier(String),
-    Keyword(String),
-    Literal(String),
-    Operator(char),
-    Delimiter(char),
-    Whitespace,
+
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+pub struct Token {
+    pub r#type: TokenType,
+    pub literal: String,
+    pub line: i32, 
+    pub column: i32
+}
+
+pub fn lookup_ident(ident: &str) -> TokenType {
+    match ident {
+        "def" => TokenType::DEF,
+        "return" => TokenType::RETURN,
+        "if" => TokenType::IF,
+        "else" => TokenType::ELSE,
+        "elif" => TokenType::ELIF,
+        "for" => TokenType::FOR,
+        "while" => TokenType::WHILE,
+        "break" => TokenType::BREAK,
+        "continue" => TokenType::CONTINUE,
+        "pass" => TokenType::PASS,
+        "True" => TokenType::TRUE,
+        "False" => TokenType::FALSE,
+        "None" => TokenType::NONE,
+        "and" => TokenType::AND,
+        "or" => TokenType::OR,
+        "not" => TokenType::NOT,
+        "in" => TokenType::IN,
+        "is" => TokenType::IS,
+        "class" => TokenType::CLASS,
+        "import" => TokenType::IMPORT,
+        "from" => TokenType::FROM,
+        "as" => TokenType::AS,
+        "with" => TokenType::WITH,
+        "try" => TokenType::TRY,
+        "except" => TokenType::EXCEPT,
+        "finally" => TokenType::FINALLY,
+        "raise" => TokenType::RAISE,
+        "yield" => TokenType::YIELD,
+        "lambda" => TokenType::LAMBDA,
+        _ => TokenType::IDENT
+    }
 }
