@@ -10,7 +10,7 @@ fn main() {
     //Python lexical analyzer
 
     println!("Welcome to the Python Lexical Analyzer!");
-    println!("Please select an option:\n1. Input Python code\n2. Use default code\n3. Analyze a file");
+    println!("Please select an option:\n1. Input Python code\n2. Use default code\n3. Analyze a file(TODO, not implemented yet)");
 
     let mut input = String::new();
 
@@ -26,14 +26,23 @@ fn main() {
             .read_line(&mut code)
             .expect("Failed to read input");
 
+        let mut lexer = Lexer::new(code.trim_end());
+        let tokens = lexer.tokenize();
+        for token in tokens {
+            println!("{:?}", token);
+        }
+
     } else if input == "2" {
         let default_code = "def add_numbers(num1, num2):
             sum = num1 + num2
             print('Sum: ',sum)";
-        println!("Default code:\n{}", default_code);
+        println!("Default code:\n{}\n", default_code);
         let mut lexer = Lexer::new(default_code);
 
-        let tokens = lexer.next_token();
+        let tokens = lexer.tokenize();
+        for token in tokens {
+            println!("{:?}", token);
+        }
 
     } else { //TODO: Implement the logic for analyzing the file
         println!("Enter path to the file:");
@@ -42,12 +51,7 @@ fn main() {
             .read_line(&mut path)
             .expect("Failed to read input");
 
-        let file_input = File::open(path.trim()).unwrap();
+        let _file_input = File::open(path.trim()).unwrap();
     }
     
-}
-
-fn analyze_file(file: &str) -> i32 {
-    // Implementation for analyzing the file
-    return 0;
 }
