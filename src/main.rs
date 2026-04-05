@@ -1,5 +1,5 @@
-use std::io;
 use std::fs::File;
+use std::io::{self, Read};
 
 mod token;
 mod lexer;
@@ -20,13 +20,13 @@ fn main() {
     let input = input.trim();// Trim \n
 
     if input == "1" { //TODO: Implement the logic for analyzing the input code
-        println!("Enter your python code:");
+        println!("Enter your python code (multi-line supported). Press Ctrl+D(Linux) or Ctrl+Z(Windows) when done:");
         let mut code = String::new();
         io::stdin()
-            .read_line(&mut code)
+            .read_to_string(&mut code)
             .expect("Failed to read input");
 
-        let mut lexer = Lexer::new(code.trim_end());
+        let mut lexer = Lexer::new(&code);
         let tokens = lexer.tokenize();
         for token in tokens {
             println!("{:?}", token);
