@@ -17,11 +17,12 @@ cargo build
 cargo run
 
 ## Input
+```
 print("test")
 test = 10
 def test():
     return 5 + 10
-
+```
 ## How It Works
 1. Read input
 2. Tokenize into characters
